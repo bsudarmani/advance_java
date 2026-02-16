@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Icon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    margin: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #6f97d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.house {
+    position: relative;
+}
+
+/* Roof */
+.roof {
+    width: 0;
+    height: 0;
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 120px solid #233b7a;
+}
+
+/* House body */
+.body {
+    width: 200px;
+    height: 160px;
+    background-color: #233b7a;
+    margin: 0 auto;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+}
+
+/* Window */
+.window {
+    width: 100px;
+    height: 12px;
+    background-color: #f2c15c;
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    border-radius: 6px;
+}
+
+/* Door */
+.door {
+    width: 40px;
+    height: 70px;
+    background-color: #f2c15c;
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+    border-radius: 6px 6px 0 0;
+}
+</style>
+<body>
+
+<div class="container">
+    <div class="house">
+        <div class="roof"></div>
+        <div class="body">
+            <div class="window"></div>
+            <div class="door"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

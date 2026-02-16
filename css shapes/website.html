@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Layout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    background-color: #ffffee;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.page {
+    width: 600px;
+}
+
+/* Header */
+.header {
+    height: 50px;
+    background-color: #b5b77a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.small {
+    width: 25px;
+    height: 25px;
+    background-color: #4f5a22;
+}
+
+/* Main */
+.main {
+    display: flex;
+    margin: 15px 0;
+}
+
+.sidebar {
+    width: 150px;
+    height: 280px;
+    background-color: #b5b77a;
+    margin-right: 15px;
+}
+
+.content {
+    flex: 1;
+}
+
+.block {
+    height: 80px;
+    background-color: #b5b77a;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    height: 40px;
+    background-color: #b5b77a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.fbox {
+    width: 30px;
+    height: 20px;
+    background-color: #4f5a22;
+}
+</style>
+<body>
+
+<div class="page">
+    <!-- Header -->
+    <div class="header">
+        <div class="box small"></div>
+        <div class="box small"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="sidebar"></div>
+        <div class="content">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="fbox"></div>
+        <div class="fbox"></div>
+        <div class="fbox"></div>
+    </div>
+</div>
+
+</body>
+</html>

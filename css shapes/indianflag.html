@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indian Flag</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.flag {
+    width: 450px;
+    height: 300px;
+    border: 2px solid black;
+}
+
+.saffron {
+    height: 100px;
+    background-color: #ff9933;
+}
+
+.white {
+    height: 100px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green {
+    height: 100px;
+    background-color: #138808;
+}
+
+.chakra {
+    width: 70px;
+    height: 70px;
+    border: 4px solid #000080;
+    border-radius: 50%;
+    position: relative;
+}
+
+.chakra::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(
+        #000080 0deg 5deg,
+        white 5deg 10deg
+    );
+    border-radius: 50%;
+}
+</style>
+<body>
+
+<div class="flag">
+    <div class="saffron"></div>
+    <div class="white">
+        <div class="chakra"></div>
+    </div>
+    <div class="green"></div>
+</div>
+
+</body>
+</html>
