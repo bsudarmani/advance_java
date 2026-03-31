@@ -1,0 +1,251 @@
+Here is the **same content fully converted into clear English** and organized from **Beginner → Intermediate → Advanced (Master)** level.
+
+Current companies such as **Zoho and other MNCs** often ask questions from **JDBC → Servlet → JSP → Hibernate** in **Java Web Development interviews**.
+
+Below is the **important topic list from Beginner to Master level**.
+
+---
+
+# 1️⃣ JDBC (Java Database Connectivity)
+
+## 🟢 Beginner
+
+1. What is JDBC
+2. JDBC Architecture
+3. Types of JDBC Drivers (Type 1, Type 2, Type 3, Type 4)
+4. JDBC API Packages
+5. Steps to connect Java with a Database
+6. `DriverManager`
+7. `Connection` Interface
+8. `Statement` Interface
+9. `ResultSet`
+10. `executeQuery()` vs `executeUpdate()`
+
+---
+
+## 🟡 Intermediate
+
+1. `PreparedStatement`
+2. `CallableStatement`
+3. ResultSet Types
+4. ResultSet Concurrency
+5. Batch Processing
+6. Transactions in JDBC
+7. Commit and Rollback
+8. Exception Handling in JDBC
+9. Calling Stored Procedures
+10. Metadata (`DatabaseMetaData`, `ResultSetMetaData`)
+
+---
+
+## 🔴 Advanced / Master
+
+1. Connection Pooling
+2. `DataSource` vs `DriverManager`
+3. Performance Optimization
+4. JDBC RowSet
+5. SQL Injection Prevention
+6. Distributed Transactions
+7. JDBC with Frameworks
+8. JDBC Best Practices
+
+---
+
+# 2️⃣ Servlet
+
+## 🟢 Beginner
+
+1. What is a Servlet
+2. Servlet Architecture
+3. Servlet Life Cycle
+
+   * `init()`
+   * `service()`
+   * `destroy()`
+4. GenericServlet vs HttpServlet
+5. `doGet()` vs `doPost()`
+6. `ServletRequest`
+7. `ServletResponse`
+8. `PrintWriter`
+
+---
+
+## 🟡 Intermediate
+
+1. `HttpServletRequest`
+2. `HttpServletResponse`
+3. Request Parameters
+4. RequestDispatcher
+5. Forward vs Redirect
+6. ServletConfig
+7. ServletContext
+8. Session Management Basics
+
+---
+
+## 🔴 Advanced / Master
+
+1. Session Tracking Techniques
+
+   * Cookies
+   * URL Rewriting
+   * Hidden Fields
+   * HttpSession
+
+2. Filters
+
+3. Listeners
+
+4. Annotations vs `web.xml`
+
+5. MVC Architecture using Servlets
+
+6. Security Concepts
+
+7. Servlet Threading Model
+
+8. Servlet Best Practices
+
+---
+
+# 3️⃣ JSP (Java Server Pages)
+
+## 🟢 Beginner
+
+1. What is JSP
+2. JSP Life Cycle
+3. JSP vs Servlet
+4. JSP Scriptlets
+5. JSP Expressions
+6. JSP Declarations
+7. JSP Implicit Objects
+
+Important JSP Implicit Objects
+
+* request
+* response
+* session
+* application
+* out
+* pageContext
+* config
+* page
+* exception
+
+---
+
+## 🟡 Intermediate
+
+1. JSP Directives
+
+   * Page Directive
+   * Include Directive
+   * Taglib Directive
+
+2. JSP Action Tags
+
+3. `<jsp:include>`
+
+4. `<jsp:forward>`
+
+5. Error Handling
+
+6. JSP Include vs Forward
+
+7. Expression Language (EL)
+
+---
+
+## 🔴 Advanced / Master
+
+1. JSTL (Java Standard Tag Library)
+2. Custom Tags
+3. MVC with JSP
+4. JSP Best Practices
+5. Avoid Scriptlets
+6. JSP Performance Optimization
+7. JSP with Frameworks
+
+---
+
+# 4️⃣ Hibernate (ORM Framework)
+
+## 🟢 Beginner
+
+1. What is ORM (Object Relational Mapping)
+2. Hibernate Architecture
+3. Hibernate vs JDBC
+4. Configuration File (`hibernate.cfg.xml`)
+5. Mapping File (`.hbm.xml`)
+6. Entity Class
+7. `SessionFactory`
+8. `Session`
+
+---
+
+## 🟡 Intermediate
+
+1. CRUD Operations
+2. HQL (Hibernate Query Language)
+3. Criteria API
+4. Named Queries
+5. Pagination
+6. Caching Basics
+7. Lazy Loading vs Eager Loading
+
+---
+
+## 🔴 Advanced / Master
+
+1. First Level Cache
+2. Second Level Cache
+3. Hibernate Transactions
+4. Hibernate Annotations
+5. One-to-One Mapping
+6. One-to-Many Mapping
+7. Many-to-One Mapping
+8. Many-to-Many Mapping
+9. Cascade Types
+10. Fetch Types
+11. Hibernate Performance Tuning
+
+---
+
+# ⭐ Most Important Topics Asked in Interviews
+
+Companies frequently ask questions from these topics:
+
+### JDBC
+
+* PreparedStatement vs Statement
+* Transaction Management
+* Connection Pooling
+
+### Servlet
+
+* Servlet Life Cycle
+* Forward vs Redirect
+* Session Management
+
+### JSP
+
+* JSP Life Cycle
+* JSP Implicit Objects
+* JSP vs Servlet
+
+### Hibernate
+
+* Hibernate vs JDBC
+* SessionFactory vs Session
+* Lazy vs Eager Loading
+* Mapping Types
+
+---
+
+✅ If you want, I can also provide:
+
+* **50 Important JDBC + Servlet + JSP + Hibernate Interview Questions**
+* **10 Real-Time Coding Examples**
+* **Java Web Development Interview Roadmap (0 → Job Level)**
+
+These are very useful for **Zoho and MNC interview preparation**.
