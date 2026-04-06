@@ -14,9 +14,23 @@ public class Loginform extends HttpServlet
             throws IOException,ServletException
     {
      res.setContentType("text/html");
-     String name=req.getParameter("name");
+     String name=req.getParameter("username");
+     String pass=req.getParameter("password");
      PrintWriter out=res.getWriter();
-     out.println("<h1>"+name+"</h1>");
-     System.out.println(name);
+     if(name.equals("admin")&&pass.equals("12345"))
+     {
+         HttpSession session=req.getSession();
+         session.setAttribute("username",name);
+         res.sendRedirect("dashboard");
+     }
+     else if(!name.equals("admin") && pass.equals("12345"))
+     {
+         out.println("<h1>Username is incorrect</h1>");
+         out.println("<a href='index.html'>Go to Login Page</a>");
+     }
+     else if(name.equals("admin") && !pass.equals("12345")){
+         out.println("<h1>Password is incorrect</h1>");
+         out.println("<a href='index.html'>Go to Login page</a>");
+     }
     }
 }
