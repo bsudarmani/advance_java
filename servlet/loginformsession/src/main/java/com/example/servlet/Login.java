@@ -17,7 +17,7 @@ public class Login
 
         String name=req.getParameter("name");
         PrintWriter out=res.getWriter();
-
+        System.out.println("name:"+name);
         out.println("<html>" +
                 "<h1> hello"+name +
                 "</html>");
