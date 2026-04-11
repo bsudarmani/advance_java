@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SwingProjetct.iml" filepath="$PROJECT_DIR$/SwingProjetct.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UpperBound.iml" filepath="$PROJECT_DIR$/UpperBound.iml" />
     </modules>
   </component>
 </project>
