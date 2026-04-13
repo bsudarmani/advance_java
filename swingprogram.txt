@@ -1,0 +1,310 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class emi extends JFrame implements ActionListener {
+
+    JTextField txtAmount, txtRate, txtMonths, txtEmi;
+    JButton btnCalculate;
+
+    public emi() {
+
+        setTitle("EMI Calculator");
+        setSize(380, 300);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JLabel l1 = new JLabel("Loan Amount:");
+        JLabel l2 = new JLabel("Monthly Interest (%):");
+        JLabel l3 = new JLabel("Number of Months:");
+        JLabel l4 = new JLabel("Monthly EMI:");
+
+        l1.setBounds(30, 30, 160, 25);
+        l2.setBounds(30, 70, 160, 25);
+        l3.setBounds(30, 110, 160, 25);
+        l4.setBounds(30, 200, 160, 25);
+
+        add(l1); add(l2); add(l3); add(l4);
+
+        txtAmount = new JTextField();
+        txtRate = new JTextField();
+        txtMonths = new JTextField();
+        txtEmi = new JTextField();
+
+        txtEmi.setEditable(false);
+
+        txtAmount.setBounds(200, 30, 130, 25);
+        txtRate.setBounds(200, 70, 130, 25);
+        txtMonths.setBounds(200, 110, 130, 25);
+        txtEmi.setBounds(200, 200, 130, 25);
+
+        add(txtAmount);
+        add(txtRate);
+        add(txtMonths);
+        add(txtEmi);
+
+        btnCalculate = new JButton("Calculate EMI");
+        btnCalculate.setBounds(110, 150, 150, 30);
+        add(btnCalculate);
+
+        btnCalculate.addActionListener(this);
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        double principal = Double.parseDouble(txtAmount.getText());
+        double rate = Double.parseDouble(txtRate.getText()) / 100;
+        int months = Integer.parseInt(txtMonths.getText());
+
+        double emi = (principal * rate * Math.pow(1 + rate, months)) /
+                (Math.pow(1 + rate, months) - 1);
+
+        txtEmi.setText(String.format("%.2f", emi));
+    }
+
+    public static void main(String[] args) {
+        new emi();
+    }
+}
+-----------------------------------------------------------
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class EmojiRadioApp extends JFrame implements ActionListener {
+
+    JRadioButton happyBtn, sadBtn, angryBtn, surprisedBtn;
+    JLabel imageLabel;
+
+    public EmojiRadioApp() {
+
+        // Frame settings
+        setTitle("Emoji Selector Application");
+        setSize(600, 400);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Left Panel (Radio Buttons)
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(4, 1));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Select Emotion"));
+
+        happyBtn = new JRadioButton("Happy");
+        sadBtn = new JRadioButton("Sad");
+        angryBtn = new JRadioButton("Angry");
+        surprisedBtn = new JRadioButton("Surprised");
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(happyBtn);
+        bg.add(sadBtn);
+        bg.add(angryBtn);
+        bg.add(surprisedBtn);
+
+        leftPanel.add(happyBtn);
+        leftPanel.add(sadBtn);
+        leftPanel.add(angryBtn);
+        leftPanel.add(surprisedBtn);
+
+        // Right Panel (Image Display)
+        JPanel rightPanel = new JPanel();
+        rightPanel.setBorder(BorderFactory.createTitledBorder("Emoji"));
+        imageLabel = new JLabel();
+        rightPanel.add(imageLabel);
+
+        // Add panels to frame
+        add(leftPanel, BorderLayout.WEST);
+        add(rightPanel, BorderLayout.CENTER);
+
+        // Add listeners
+        happyBtn.addActionListener(this);
+        sadBtn.addActionListener(this);
+        angryBtn.addActionListener(this);
+        surprisedBtn.addActionListener(this);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (happyBtn.isSelected()) {
+            imageLabel.setIcon(new ImageIcon(getClass().getResource("/images/happy.jpg")));
+        }
+        else if (sadBtn.isSelected()) {
+            imageLabel.setIcon(new ImageIcon(getClass().getResource("/images/sad.jpg")));
+        }
+        else if (angryBtn.isSelected()) {
+            imageLabel.setIcon(new ImageIcon(getClass().getResource("/images/angry.png")));
+        }
+        else if (surprisedBtn.isSelected()) {
+            imageLabel.setIcon(new ImageIcon(getClass().getResource("/images/surprised.jpg")));
+        }
+
+    }
+
+    public static void main(String[] args) {
+        new EmojiRadioApp();
+    }
+}
+
+-------------------------------------------------------------------
+
+import javax.swing.*;
+
+import java.awt.FlowLayout;
+import java.awt.event.*;
+public class DisplayImage extends JFrame implements ActionListener{
+    JMenuBar MB;
+    JMenu MBar1,Animal,Flower,Pet,Wiled,Shru,WiledFl,About;
+    JMenuItem Dog,Cat,Rabbit,Lion,Tiger,Rose,Lavender,Poppy,Bluebell,AboutPage;
+    String u ="C:\\Users\\test\\IdeaProjects\\Fact\\src\\images";
+    JLabel l1;
+    ImageIcon ob;
+    DisplayImage() {
+        setTitle("Menu Bar");
+        setSize(300, 200);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        l1 = new JLabel();
+        ob = new ImageIcon(u + "11.jpg");
+        l1.setIcon(ob);
+        add(l1);
+        MB = new JMenuBar();
+        MBar1 = new JMenu("Menu Bar");
+        Animal = new JMenu("Animal");
+        Flower = new JMenu("Flower");
+        Pet = new JMenu("Pet Animal");
+        Wiled = new JMenu("Wiled Animal");
+        Shru = new JMenu("Shrubs Flowers");
+        WiledFl = new JMenu("Wiled Flowers");
+        About = new JMenu("About");
+        Dog = new JMenuItem("Dog");
+        Cat = new JMenuItem("Cat");
+        Rabbit = new JMenuItem("Rabbit");
+        Lion = new JMenuItem("Lion");
+        Tiger = new JMenuItem("Tiger");
+        Rose = new JMenuItem("Rose");
+        Lavender = new JMenuItem("Lavender");
+        Poppy = new JMenuItem("Poppy");
+        Bluebell = new JMenuItem("Bluebell");
+        AboutPage = new JMenuItem("About Page");
+        MBar1.add(Animal);
+        MBar1.add(Flower);
+        MBar1.add(About);
+        Animal.add(Pet);
+        Animal.add(Wiled);
+        Flower.add(Shru);
+        Flower.add(WiledFl);
+        About.add(AboutPage);
+        Pet.add(Dog);
+        Pet.add(Cat);
+        Pet.add(Rabbit);
+        Wiled.add(Lion);
+        Wiled.add(Tiger);
+        Shru.add(Rose);
+        Shru.add(Lavender);
+        WiledFl.add(Poppy);
+        WiledFl.add(Bluebell);
+        About.add(AboutPage);
+        MB.add(MBar1);
+        setJMenuBar(MB);
+        Dog.addActionListener(this);
+        Cat.addActionListener(this);
+        Rabbit.addActionListener(this);
+        Lion.addActionListener(this);
+        Tiger.addActionListener(this);
+        Rose.addActionListener(this);
+        Lavender.addActionListener(this);
+        Poppy.addActionListener(this);
+        Bluebell.addActionListener(this);
+        AboutPage.addActionListener(this);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == Dog)
+            ob = new ImageIcon(getClass().getResource("/images/dog.jpg"));
+        else if(e.getSource() == Cat)
+            ob = new ImageIcon(getClass().getResource("/images/cat.jpg"));
+        else if(e.getSource() == Rabbit)
+            ob = new ImageIcon(getClass().getResource("/images/rabbit.jpg"));
+        else if(e.getSource() == Lion)
+            ob = new ImageIcon(getClass().getResource("/images/lion.jpg"));
+        else if(e.getSource() == Tiger)
+            ob = new ImageIcon(getClass().getResource("/images/Tiger.jpg"));
+        else if(e.getSource() == Rose)
+            ob = new ImageIcon(getClass().getResource("/images/rose.jpg"));
+        else if(e.getSource() == Lavender)
+            ob = new ImageIcon(getClass().getResource("/images/lavender.jpg"));
+        else if(e.getSource() == Poppy)
+            ob = new ImageIcon(getClass().getResource("/images/poppy.jpg"));
+        else if(e.getSource() == Bluebell)
+            ob = new ImageIcon(getClass().getResource("/images/Bluebell.jpg"));
+        else if(e.getSource() == AboutPage)
+            ob = new ImageIcon(getClass().getResource("/images/aboutus.jpg"));
+        l1.setIcon(ob);
+    }
+    public static void main(String[] args) {
+        DisplayImage s = new DisplayImage();
+    }
+}
+
+---------------------------------------------------------------------
+
+
+import javax.swing.*;
+import java.awt.*;
+public class ProductList extends JFrame {
+    JList<String> pro;
+    JScrollPane scr;
+    JLabel l1, l2, l3, l4;
+    ProductList() {
+        setSize(500, 250);
+        setTitle("ProdctList");
+        setResizable(false);
+        setLayout(new GridLayout(4, 3, 5, 5));
+        l1 = new JLabel("Product Price of ", SwingConstants.CENTER);
+        l2 = new JLabel("Select the Product : ");
+        l3 = new JLabel("Price : ");
+        l4 = new JLabel();
+        String[] product = {"Pen", "Pencil", "Scale", "Eraser", "Note", "Paper","A4sheetPaperBundle","ClgBag"};
+        pro = new JList<>(product);
+        scr = new JScrollPane(pro);
+        add(new JLabel(""));
+        add(l1);
+        add(new JLabel(""));
+        add(l2);
+        add(new JLabel(""));
+        add(scr);
+        add(l3);
+        add(new JLabel(""));
+        add(l4);
+        add(new JLabel(""));
+        pro.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                Price(pro.getSelectedValue());
+            }
+        });
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    void Price(String product) {
+        if (product == null) return;
+        switch (product) {
+            case "Pen" -> l4.setText("₹ 10");
+            case "Scale","Pencil" -> l4.setText("₹ 5");
+            case "Eraser" -> l4.setText("₹ 5");
+            case "Note" -> l4.setText("₹ 40");
+            case "Paper" -> l4.setText("₹ 20");
+            case "A4sheetPaperBundle"->l4.setText("₹40");
+            case "ClgBag"->l4.setText("₹900");
+        }
+    }
+    public static void main(String[] args) {
+        new ProductList();
+    }
+}

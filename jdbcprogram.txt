@@ -1,0 +1,371 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.sql.*;
+
+public class UpdateViewExample extends JFrame {
+
+    // Database Details
+    String url = "jdbc:sqlserver://AJCAMPUSNETSERV\\SQLEXPRESS;"
+            + "databaseName=PCA153;"
+            + "encrypt=true;"
+            + "trustServerCertificate=true;";
+
+    String USER = "sa";
+    String PASSWORD = "sa123";
+
+    JTextField txtId, txtName, txtMarks;
+    JButton btnUpdate, btnView;
+    JTable table;
+    DefaultTableModel model;
+
+    public UpdateViewExample() {
+
+        setTitle("Update & View Students");
+        setSize(650, 450);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // ===== Form Panel =====
+        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+
+        panel.add(new JLabel("Student ID:"));
+        txtId = new JTextField();
+        panel.add(txtId);
+
+        panel.add(new JLabel("Student Name:"));
+        txtName = new JTextField();
+        panel.add(txtName);
+
+        panel.add(new JLabel("Marks:"));
+        txtMarks = new JTextField();
+        panel.add(txtMarks);
+
+        btnUpdate = new JButton("Update");
+        btnView = new JButton("View");
+
+        panel.add(btnUpdate);
+        panel.add(btnView);
+
+        add(panel, BorderLayout.NORTH);
+
+        // ===== Table =====
+        model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Name");
+        model.addColumn("Marks");
+
+        table = new JTable(model);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        // ===== Button Actions =====
+        btnUpdate.addActionListener(e -> updateStudent());
+        btnView.addActionListener(e -> viewStudents());
+
+        setVisible(true);
+    }
+
+    private Connection getConnection() throws Exception {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        return DriverManager.getConnection(url, USER, PASSWORD);
+    }
+
+    // ===== UPDATE =====
+    private void updateStudent() {
+        try (Connection con = getConnection()) {
+
+            String sql = "UPDATE students SET stu_name=?, stu_mark=? WHERE stu_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, txtName.getText());
+            ps.setString(2, txtMarks.getText());
+            ps.setInt(3, Integer.parseInt(txtId.getText()));
+
+            int rows = ps.executeUpdate();
+
+            if (rows > 0)
+                JOptionPane.showMessageDialog(this, "Record Updated Successfully!");
+            else
+                JOptionPane.showMessageDialog(this, "Record Not Found!");
+
+            clearFields();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    // ===== VIEW =====
+    private void viewStudents() {
+        try (Connection con = getConnection()) {
+
+            model.setRowCount(0); // Clear previous data
+
+            String sql = "SELECT * FROM students";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getInt("stu_id"),
+                        rs.getString("stu_name"),
+                        rs.getString("stu_mark")
+                });
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    private void clearFields() {
+        txtId.setText("");
+        txtName.setText("");
+        txtMarks.setText("");
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(UpdateViewExample::new);
+    }
+}
+
+
+
+
+--------------------------------
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.sql.*;
+
+public class DeleteViewExample extends JFrame {
+
+    // Database Details
+    String url = "jdbc:sqlserver://AJCAMPUSNETSERV\\SQLEXPRESS;"
+            + "databaseName=PCA153;"
+            + "encrypt=true;"
+            + "trustServerCertificate=true;";
+
+    String USER = "sa";
+    String PASSWORD = "sa123";
+
+    JTextField txtId;
+    JButton btnDelete, btnView;
+    JTable table;
+    DefaultTableModel model;
+
+    public DeleteViewExample() {
+
+        setTitle("Delete & View Students");
+        setSize(600, 450);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // ===== Top Panel =====
+        JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
+
+        panel.add(new JLabel("Enter Student ID to Delete:"));
+        txtId = new JTextField();
+        panel.add(txtId);
+
+        btnDelete = new JButton("Delete");
+        btnView = new JButton("View");
+
+        panel.add(btnDelete);
+        panel.add(btnView);
+
+        add(panel, BorderLayout.NORTH);
+
+        // ===== Table =====
+        model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Name");
+        model.addColumn("Marks");
+
+        table = new JTable(model);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        // ===== Button Actions =====
+        btnDelete.addActionListener(e -> deleteStudent());
+        btnView.addActionListener(e -> viewStudents());
+
+        setVisible(true);
+    }
+
+    private Connection getConnection() throws Exception {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        return DriverManager.getConnection(url, USER, PASSWORD);
+    }
+
+    // ===== DELETE =====
+    private void deleteStudent() {
+        try (Connection con = getConnection()) {
+
+            String sql = "DELETE FROM students WHERE stu_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, Integer.parseInt(txtId.getText()));
+
+            int rows = ps.executeUpdate();
+
+            if (rows > 0)
+                JOptionPane.showMessageDialog(this, "Record Deleted Successfully!");
+            else
+                JOptionPane.showMessageDialog(this, "Record Not Found!");
+
+            txtId.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    // ===== VIEW =====
+    private void viewStudents() {
+        try (Connection con = getConnection()) {
+
+            model.setRowCount(0); // Clear old data
+
+            String sql = "SELECT * FROM students";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getInt("stu_id"),
+                        rs.getString("stu_name"),
+                        rs.getString("stu_mark")
+                });
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(DeleteViewExample::new);
+    }
+}
+
+-----------------------------
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class MySqlExample {
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        try
+        {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            final String url =
+                    "jdbc:sqlserver://AJCAMPUSNETSERV\\SQLEXPRESS;" +
+                            "databaseName=PCA153;" +
+                            "encrypt=true;" +
+                            "trustServerCertificate=true";
+            final String username="sa";
+            String password="sa123";
+            String query="insert into students values(?,?,?)";
+            String query2="select * from students";
+            Connection con=DriverManager.getConnection(url, username, password);
+            while(true)
+            {
+                System.out.println("Enter the id");
+                int stu_id=sc.nextInt();
+
+                System.out.println("Enter the name");
+                String stu_name=sc.next();
+
+                System.out.println("Enter the dept name");
+                String stu_dept=sc.next();
+
+                PreparedStatement pst=con.prepareStatement(query);
+                pst.setInt(1, stu_id);
+                pst.setString(2, stu_name);
+                pst.setString(3, stu_dept);
+
+                int row=pst.executeUpdate();
+                if(row>0)
+                    System.out.println("row affected:"+row);
+                else
+                    System.out.println("Not insert the value");
+
+                System.out.println("do you continue(yes/no)");
+                String choice=sc.next();
+                if(choice.equalsIgnoreCase("no"))
+                    break;
+            }
+
+            System.out.println("After the insert the value");
+            ResultSet s=con.createStatement().executeQuery(query2);
+            System.out.println("Stu_id\tstu_name\tstu_dept");
+            System.out.println("----------------------------");
+
+            while(s.next())
+            {
+                System.out.println(
+                        s.getInt(1)+"\t"+
+                                s.getString(2)+"\t"+
+                                s.getString(3)
+                );
+            }
+
+            con.close();
+        }
+        catch(ClassNotFoundException | SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("database is not connected");
+        }
+    }
+}
+
+
+
+----------------------------------------------
+
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class ViewSqlExample {
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            final String url="jdbc:mysql://localhost:3306/jdbc";
+            final String username="root";
+            String password="";
+            String query2="select * from students";
+            Connection con=DriverManager.getConnection(url, username, password);
+            ResultSet s=con.createStatement().executeQuery(query2);
+            System.out.println("Stu_id\tstu_name\tstu_dept");
+            System.out.println("----------------------------");
+            while(s.next())
+            {
+
+                System.out.println(s.getInt(1)+"  \t  "+ s.getString(2)+"  \t  "+s.getString(3));
+            }
+            con.close();
+        }
+        catch(ClassNotFoundException | SQLException e)
+        {
+            System.out.println("database is not connected");
+        }
+    }
+
+}
+
+
+
+
+
+
