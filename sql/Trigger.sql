@@ -30,3 +30,57 @@ end
 insert into employees values(2,'vijay','vijay@gmail.com');
 select * from employees;
 select * from employees_his;
+
+
+/* DML Trigger(After) */
+create trigger dml_trigger
+on employees
+after insert
+as
+  begin
+  print 'hello'
+  end
+
+  /* DML Trigger(for) correctly worked*/
+create trigger dml_trigger1
+on employees
+for insert
+as
+  begin
+  print 'hello'
+  end
+
+
+/* DML Trigger(instead of) correctly worked 
+create trigger dml_trigger2
+on employees
+instead of insert
+as
+  begin
+  print 'hello dml cmd'
+  end */
+  
+  
+
+  /*real time example */
+  create trigger dml_trigger3
+  on employee
+  for insert
+  as
+   begin
+     select * from inserted
+   end
+
+
+
+insert into employees values(4,'saru','saru@gmail.com');
+  select * from employees;
+
+
+  /* System trigger */
+  select name from sys.triggers;
+ 
+
+
+
+

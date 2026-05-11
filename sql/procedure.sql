@@ -74,15 +74,17 @@ begin
    end
 end
 
-
+select * from employee;
+truncate table employee;
 
 exec prosample3 
-@emp_name='sudar',
-@emp_email='sudar@gmail.com',
+@emp_name='sudarmani',
+@emp_email='sudarmani@gmail.com',
 @emp_designation='INTERN',
 @emp_salary=12000,
 @emp_incharge_id=5,
 @action='i';
+
 
 /*view procedure */
 select * from employee;
