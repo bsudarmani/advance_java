@@ -1,0 +1,51 @@
+package com.example.servlet;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+@WebServlet("/multimedia")
+public class MultimediaServlet extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+        String user = request.getParameter("user");
+        String type = request.getParameter("type");
+
+        out.println("<html>");
+        out.println("<body style='text-align:center'>");
+
+        out.println("<h2>Welcome " + user + "</h2>");
+
+        if(type.equals("image"))
+        {
+            out.println("<h3>Image Display</h3>");
+            out.println("<img src='image.jpg' width='400'>");
+        }
+
+        else if(type.equals("audio"))
+        {
+            out.println("<h3>Audio Player</h3>");
+            out.println("<audio controls>");
+            out.println("<source src='ayaasher.mp3' type='audio/mpeg'>");
+            out.println("</audio>");
+        }
+
+        else if(type.equals("video"))
+        {
+            out.println("<h3>Video Player</h3>");
+            out.println("<video width='400' controls>");
+            out.println("<source src='f1movie.mp4' type='video/mp4'>");
+            out.println("</video>");
+        }
+
+        out.println("</body>");
+        out.println("</html>");
+    }
+}
