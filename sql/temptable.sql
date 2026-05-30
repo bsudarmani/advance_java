@@ -16,6 +16,43 @@ insert into emp_salary values('muthu','lakshmi',17000,1);
 
 select * from emp_salary;
 
-/* soft delete and common tempary table applied(cte)*/
-create table emp_remove as
-select emp_id from emp_salary where emp_isdelete=1;
+/* ctas*/
+select * into emp_remove from emp_salary;
+
+select * from emp_salary;
+select * from emp_remove;
+
+/*temp table*/
+create table #emp_temp
+(
+emp_id int identity(1,1),
+emp_name varchar(20)
+);
+
+insert into #emp_temp values('sudar');
+insert into #emp_temp values('mani');
+
+select * from #emp_temp;
+
+/*global table*/
+create table ##emp_global
+(
+emp_id int identity(1,1),
+emp_name varchar(20)
+);
+
+insert into ##emp_global values('sudar');
+insert into ##emp_global values('mani');
+
+select * from ##emp_global;
+
+
+/*cte table */
+with ctetable as
+(
+select * from ##emp_global
+)
+select * into ctetbaleper from ctetable;
+
+
+select * from ctetbaleper;
