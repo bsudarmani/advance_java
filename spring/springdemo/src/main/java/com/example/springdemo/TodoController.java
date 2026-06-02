@@ -27,6 +27,5 @@ public class TodoController
         return "request param id"+id;
     }
 
-    //postmapping
 
 }
